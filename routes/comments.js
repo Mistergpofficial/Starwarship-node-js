@@ -78,7 +78,7 @@ router.post("/add", (req, res) => {
 
 // Get comment for a movie
 router.get('/:movieId', (req, res) => {
-    const movieId = req.params.movieId;
+   const movieId = req.params.movieId;
    Film.findOne({episode_id: movieId}).exec().then(dd => {
         if(!dd){
             return  res.status(400).json({
@@ -86,24 +86,25 @@ router.get('/:movieId', (req, res) => {
                 message: 'Movie ID  does not exist',
                 data: null
             });
-        }
-        let comment = Comment.find({commentable_id: dd.episode_id}).exec()
-        comment.then(doccumen =>{ 
-        if(doccumen.length !== 0){
-            return  res.status(400).json({
-                status: true,
-                message: 'Comment retrieved for Movie number ' + movieId,
-                ip_address: comment.ip_address,
-                data: _.sortBy(doccumen, 'release_date'),
-            });
         }else{
-            return  res.status(400).json({
-                status: false,
-                message: 'No comment found for this movie at this time',
-                data: null
-            }); 
+            Comment.find({commentable_id: dd.episode_id}).exec().then(doccumen =>{ 
+                if(doccumen.length !== 0){
+                    return  res.status(200).json({
+                        status: true,
+                        message: 'Comment retrieved for Movie number ' + movieId,
+                        ip_address: doccumen.ip_address,
+                        data: _.sortBy(doccumen, 'release_date'),
+                    });
+                }else{
+                    return  res.status(400).json({
+                        status: false,
+                        message: 'No comment found for this movie at this time',
+                        data: null
+                    }); 
+                }
+            })
         }
-    })
+       
 });
     
    
