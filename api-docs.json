@@ -39,8 +39,8 @@
         "description": "Creates comments for a movie",
         "parameters": [
           {
-            "name": "body",
-            "in": "body",
+            "name": "comment",
+            "in": "comment",
             "required": true,
             "description": "creating a new comment",
             "schema": {
@@ -173,7 +173,7 @@
     "commentRequest": {
       "type": "object",
       "properties": {
-        "body": {
+        "comment": {
           "type": "string",
           "example": "This is a movie comment for the third movie"
         },
