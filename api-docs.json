@@ -31,7 +31,7 @@
         }
       }
     },
-    "/comments/add": {
+    "/comments": {
       "post": {
         "tags": [
           "comments"
@@ -40,7 +40,7 @@
         "parameters": [
           {
             "name": "comment",
-            "in": "comment",
+            "in": "body",
             "required": true,
             "description": "creating a new comment",
             "schema": {
@@ -173,7 +173,7 @@
     "commentRequest": {
       "type": "object",
       "properties": {
-        "comment": {
+        "body": {
           "type": "string",
           "example": "This is a movie comment for the third movie"
         },
