@@ -3,12 +3,12 @@
   "info": {
     "description": "This is a small set of API endpoints that can be used for listing the names of Star Wars movies, along with their opening crawls and comment counts. Adding and listing anonymous comments for a movie, and getting the character list for a movie",
     "version": "1.0.0",
-    "title": "Star Wars Laravel API",
+    "title": "Star Wars Node Js API",
     "contact": {
       "email": "ehuriahgodspower@gmail.com"
     }
   },
-  "host": "https://floating-inlet-99188.herokuapp.com",
+  "host": "floating-inlet-99188.herokuapp.com",
   "basePath": "/",
   "schemes": [
     "https",
