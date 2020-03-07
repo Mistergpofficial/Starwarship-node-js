@@ -1,34 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const Mongoose = require('mongoose');
-const env = require('dotenv').config();
 const axios = require('axios');
-var stringify = require('json-stringify-safe');
-const _ = require('lodash');
 const Film = require("../models/Film");
+const filmService = require('../services/film');
 
 
  // Get all movies
 router.get("/", async (request, response) => {
-   try {
-   const api_url = `${process.env.SWAPI_URL}/films`
-   const response_api = await axios.get(api_url);
-   const repr = JSON.parse(stringify(response_api))
-   const sort = _.sortBy(repr.data['results'], 'release_date');
+
+   let retrievedFilms = await filmService.fetchMovies();
   
-  
-    const res = {
-         data: sort.map(doc => {
-            return {
-               title: doc.title,
-               opening_crawl: doc.opening_crawl,
-               episode_id: doc.episode_id,
-               release_date: doc.release_date,
-               comment_count: doc.comment_count
-           }
-         })
-     }
-     
+   // check if movies exist in database
+   // if yes, retrieve them and display 
+   //if no, save to db
      Film.find().select('title opening_crawl episode_id release_date comment_count').exec().then(obj => {
         if(obj.length > 0){
          const retrieved = {
@@ -50,20 +35,16 @@ router.get("/", async (request, response) => {
            
          })
         }else{  
-         var film = Film.collection.insertMany(sort);
+         var film = Film.collection.insertMany(retrievedFilms);
           response.json({
             status: 200,
             message: "Film retrieved",
-            data: sort
+            data: retrievedFilms
          })
         }
      });
      
-   }
-   catch (err) {
-      console.log(err)
-      return response.json({ err })
-   }
+  
    
 });
 
