@@ -31,7 +31,7 @@
         }
       }
     },
-    "/comments": {
+    "/comments/add": {
       "post": {
         "tags": [
           "comments"

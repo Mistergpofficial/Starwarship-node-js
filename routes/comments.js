@@ -93,7 +93,7 @@ router.get('/:movieId', async(req, res) => {
                 status: true,
                 message: 'Comment retrieved for Movie number ' + movieId,
                 ip_address: comment.ip_address,
-                data: doccumen
+                data: _.sortBy(doccumen, 'release_date')
             });
         }else{
             return  res.status(400).json({
