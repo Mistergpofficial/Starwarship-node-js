@@ -10,13 +10,17 @@ const Film = require("../models/Film");
 
  // Get all movies
 router.get("/", async (request, response) => {
+   // get all the movies from the api
    try {
    const api_url = `${process.env.SWAPI_URL}/films`
    const response_api = await axios.get(api_url);
    const repr = JSON.parse(stringify(response_api))
+   //sort the movies by release date
    const sort = _.sortBy(repr.data['results'], 'release_date');
   
- 
+ //check if the movies already exist in the database
+ //if yes, display them 
+ //if no, save them to the database
      Film.find().select('title opening_crawl episode_id release_date comment_count').exec().then(obj => {
         if(obj.length > 0){
          const retrieved = {

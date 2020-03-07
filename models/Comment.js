@@ -19,6 +19,10 @@ const commentSchema = new schema({
     ip_address: {
         type: String,
         required: [true, 'IP Address Cannot Be Blank']
+    },
+    createdAt: {
+        type: Date,
+        default: Date.now
     }
 });
 

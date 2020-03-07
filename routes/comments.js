@@ -35,7 +35,8 @@ router.post("/add", (req, res) => {
             comment: req.body.comment, 
             commentable_id: req.body.commentable_id,
             commentable_type: req.body.commentable_type,
-            ip_address: req.header('x-forwarded-for') || req.connection.remoteAddress
+            ip_address: req.header('x-forwarded-for') || req.connection.remoteAddress,
+            date: new Date(Date.now()).toISOString()
          });
 
         
@@ -93,7 +94,8 @@ router.get('/:movieId', async(req, res) => {
                 status: true,
                 message: 'Comment retrieved for Movie number ' + movieId,
                 ip_address: comment.ip_address,
-                data: _.sortBy(doccumen, 'release_date')
+                data: _.sortBy(doccumen, 'release_date'),
+                date: comment.date
             });
         }else{
             return  res.status(400).json({
