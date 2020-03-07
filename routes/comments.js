@@ -77,7 +77,7 @@ router.post("/add", (req, res) => {
 });
 
 // Get comment for a movie
-router.get('/:movieId', async(req, res) => {
+router.get('/:movieId', (req, res) => {
     const movieId = req.params.movieId;
    Film.findOne({episode_id: movieId}).exec().then(dd => {
         if(!dd){
