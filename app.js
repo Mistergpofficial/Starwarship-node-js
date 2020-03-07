@@ -3,7 +3,8 @@ const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-var swaggerUi = require('swagger-ui-express');
+const swaggerUi = require('swagger-ui-express');
+const openApiDocumentation = require('./api-docs');
 //swaggerDocument = require('./')
 
 
@@ -38,6 +39,7 @@ app.all("*", function (req, res, next) {
 // Routes which should handle requests
 app.use('/films', filmRoutes);
 app.use('/comments', commentRoutes);
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openApiDocumentation));
 
 
 
