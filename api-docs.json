@@ -173,7 +173,7 @@
     "commentRequest": {
       "type": "object",
       "properties": {
-        "body": {
+        "comment": {
           "type": "string",
           "example": "This is a movie comment for the third movie"
         },
