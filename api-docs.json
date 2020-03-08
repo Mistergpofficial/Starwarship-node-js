@@ -126,7 +126,7 @@
           "200": {
             "description": "Successfully fetched and manipulated character API from Swapi endpoint",
             "schema": {
-              "$ref": "#definitions/characterResponseOk"
+              "$ref": "#/definitions/characterResponseOk"
             }
           }
         }
