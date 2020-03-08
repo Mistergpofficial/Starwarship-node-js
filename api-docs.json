@@ -88,7 +88,49 @@
           }
         }
       }
-    }
+    },
+    "/characters/{movieId}?sortBy={name}&order={asc}&gender={female}": {
+      "get": {
+        "tags": ["characters"],
+        "description": "Fetches All character for a movie based on specified parameters",
+        "parameters": [{
+          "name": "movieId",
+          "in": "path",
+          "required": true,
+          "type": "integer",
+          "description": "Movie ID"
+        },
+        {
+          "name": "sortBy",
+          "in": "query",
+          "type": "string",
+          "required": false,
+          "description": "To sort characters by one of name, gender or height"
+        },
+          {
+            "name": "order",
+            "in": "query",
+            "type": "string",
+            "required": false,
+            "description": "To order characters in ascending or descending order"
+          },
+          {
+            "name": "gender",
+            "in": "query",
+            "type": "string",
+            "required": false,
+            "description": "specifies the filter parameter. male or female"
+          }],
+          "responses": {
+            "200": {
+              "description": "Successfully fetched and manipulated character API from Swapi endpoint",
+              "schema": {
+                "$ref": "#/definitions/characterResponseOk"
+              }
+            }
+          }
+        }
+      }
   },
   "definitions": {
     "films": {
