@@ -22,3 +22,14 @@ const _ = require('lodash');
         }
 
     };
+
+    exports.fetchMovieById = async (movieId) => {
+
+      try {
+           const response = await axios.get(`${process.env.SWAPI_URL}/films/${movieId}`);
+           return response.data;
+
+      }catch (e) {
+          return Promise.reject(e);
+      }
+  };

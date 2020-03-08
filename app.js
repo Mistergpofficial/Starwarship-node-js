@@ -11,6 +11,7 @@ const openApiDocumentation = require('./api-docs');
 
 const filmRoutes  = require('./routes/films');
 const commentRoutes = require('./routes/comments');
+const characterRoutes = require('./routes/characters');
 
 
 mongoose.connect(process.env.MONGODB_URI ||  'mongodb://localhost:27017/starwar', {useNewUrlParser: true});
@@ -39,6 +40,7 @@ app.all("*", function (req, res, next) {
 // Routes which should handle requests
 app.use('/films', filmRoutes);
 app.use('/comments', commentRoutes);
+app.use('/characters', characterRoutes);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openApiDocumentation));
 
 

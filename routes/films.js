@@ -8,6 +8,7 @@ const _ = require('lodash');
 const Film = require("../models/Film");
 
 
+
  // Get all movies
 router.get("/", async (request, response) => {
    // get all the movies from the api
@@ -42,7 +43,8 @@ router.get("/", async (request, response) => {
            
          })
         }else{  
-         var film = Film.collection.insertMany(sort);
+         var film = Film.collection.insert(sort);
+         
           response.json({
             status: 200,
             message: "Film retrieved",
@@ -60,10 +62,7 @@ router.get("/", async (request, response) => {
 });
 
 
-// List character for a movie
-router.get('/:id', async (req, res) => {
-   
-});
+
 
 
 
