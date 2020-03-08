@@ -72,11 +72,8 @@ router.get('/:movieId', async(req, res) => {
             message: 'No character retrieved for movie number ' + movieId 
         })
      }
-   
-      
-   
-   
-})
+     
+});
 
 
 
