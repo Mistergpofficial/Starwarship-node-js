@@ -38,10 +38,11 @@ app.all("*", function (req, res, next) {
 
 
 // Routes which should handle requests
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openApiDocumentation));
 app.use('/films', filmRoutes);
 app.use('/comments', commentRoutes);
 app.use('/characters', characterRoutes);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(openApiDocumentation));
+
 
 
 
